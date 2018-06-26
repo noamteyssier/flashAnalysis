@@ -217,11 +217,15 @@ class SNP:
         SNP.snps.append(self)
     def add_line(self, line):
         """pull attributes of each line and add aatributes to SNP object"""
-        line = line.split('\t')
-        indexes = [0, 1, -6, -5, -4]
-        attrib = [line[i] for i in indexes]
-        self.chrom, self.pos, self.id, self.ref, self.nref = attrib
+        attrib = line.split('\t')
+        self.chrom = str(int(attrib[0].split('_')[2]))
+        self.pos, self.ref, self.nref = attrib[-4:]
         self.full_position = ':'.join([self.chrom, self.pos])
+
+        # indexes = [0, 1, -6, -5, -4]
+        # attrib = [line[i] for i in indexes]
+        # self.chrom, self.pos, self.id, self.ref, self.nref = attrib
+        # self.full_position = ':'.join([self.chrom, self.pos])
     def relative_position(self, dw):
         """make relative position of snp on reference sequence"""
         self.r_pos = int(self.pos) - int(dw.left_pos) - 1

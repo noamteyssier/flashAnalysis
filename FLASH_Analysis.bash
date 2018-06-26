@@ -26,7 +26,7 @@ python hf_stats.py -g $gen"grepped_reads.fasta" -t "target_seqs.fasta" -o $gen"h
 python thresh_join.py -i $gen"high_fidelity.fasta" -t 0.1 -o $gen$sample_name
 
 # gather haplotype statistics
-python haplotype_pickle.py -p $gen$sample_name".pkl" -d "diversity_windows.fasta" -s "maf_0.001.tsv" -o $gen$sample_name
+python haplotype_pickle.py -p $gen$sample_name".pkl" -d "diversity_windows.fasta" -s "targetSnps.bed" -o $gen$sample_name
 
 
 # done

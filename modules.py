@@ -219,7 +219,7 @@ class SNP:
         """pull attributes of each line and add aatributes to SNP object"""
         attrib = line.split('\t')
         self.chrom = str(int(attrib[0].split('_')[2]))
-        self.pos, self.ref, self.nref = attrib[-4:]
+        self.pos, self.ref, self.nref = attrib[-4:-1]
         self.full_position = ':'.join([self.chrom, self.pos])
 
         # indexes = [0, 1, -6, -5, -4]

@@ -4,7 +4,6 @@ import os
 import sys
 import argparse
 import subprocess
-
 from modules import Diversity_Window
 
 def parse_targets(target_filename):
@@ -30,14 +29,19 @@ def parse_targets(target_filename):
     #     Diversity_Window.dictionary[w].add_target(t)
     #     t.assign_window(Diversity_Window.dictionary[w])
 def calculate_total(input_filename):
+    """
+    calculate total reads by counting total lines in concatenated fasta
+    and dividing by 4 (header1/seq1/header2/seq2)
+    """
+
     wc_l = subprocess.Popen(
         'wc -l %s' %input_filename,
         shell=True, stdout=subprocess.PIPE
     )
 
     out,err = wc_l.communicate()
-    total = out.decode('ascii').split(' ')[0]
-    return total
+    total = int(out.decode('ascii').split(' ')[0])/4
+    return str(total)
 def grepReads(input_filename, target_filename, genDir):
     """call grep with regex and pipe directly"""
     grep_out = subprocess.Popen(

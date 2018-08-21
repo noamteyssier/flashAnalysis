@@ -17,11 +17,11 @@ gen=$directory"generated_files/"
 # python src/fastq_to_fasta.py -d $directory -o $gen$sample_name".fa"
 
 
-# # grep every read with a target sequence from the fasta
-# ./src/grep_reads.bash "target_seqs.fasta" $gen$sample_name".fa" $gen"grepped_reads.fa"
+# grep every read with a target sequence from the fasta
+./src/grep_reads.bash "target_seqs.tab.txt" $gen $sample_name".fa" "grepped_reads.fa"
 
-# gather high fidelity statistics and create high fidelity fasta
-python hf_stats.py -g $gen"grepped_reads.fa" -t "target_seqs.fasta" -o $gen"high_fidelity" -c $gen$sample_name".fasta"
+# # gather high fidelity statistics and create high fidelity fasta
+# python src/hf_stats.py -g $gen"grepped_reads.fa" -t "target_seqs.fasta" -o $gen"high_fidelity" -c $gen$sample_name".fa"
 
 # # join high fidelity reads
 # python thresh_join.py -i $gen"high_fidelity.fasta" -t 0.1 -o $gen$sample_name

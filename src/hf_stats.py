@@ -126,7 +126,7 @@ def calculate_total(input_filename):
 def grepReads(input_filename, target_filename, genDir):
     """call grep with regex and pipe directly"""
     grep_out = subprocess.Popen(
-            'src/new_grep_reads.bash %s %s %s' %(target_filename, genDir, input_filename), \
+            'src/grep_reads.bash %s %s %s' %(target_filename, genDir, input_filename), \
             stdout=subprocess.PIPE, shell=True
         )
 
@@ -216,7 +216,6 @@ def hf_fasta(output, pairs):
 
 def main():
     parser = argparse.ArgumentParser(description='create high fidelity statistics')
-    parser.add_argument('-g', '--grepped', help='filename of grepped reads', required=True)
     parser.add_argument('-t', '--targets', help='filename of target sequences', required=True)
     parser.add_argument('-b', '--basename', help='basename to preappend to tab.txt and fasta output', required=True)
     parser.add_argument('-i', '--input', help='fasta to grep reads and assign to targets')
@@ -241,7 +240,7 @@ def main():
     calculate_total(input)
     for assignedPairList in assign_grepped(input, targets, genDir):
         window, uid, forwardSeq, reverseSeq = assignedPairList
-        break
+
 
 
     # # printing methods

@@ -32,7 +32,7 @@ def q2a(filename, direction, f):
 
     while True:
         try:
-            uid, seq, plus, phred = [next(fastq) for i in range(4)]
+            uid, seq, plus, phred = [next(fastq).decode('ascii') for i in range(4)]
             uid = uid.split(' ')[0].replace('@', '>')
             if direction == 'F':
                 f.write(uid + '_1\n')

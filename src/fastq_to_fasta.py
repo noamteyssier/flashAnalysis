@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import Bio
 import sys
@@ -6,8 +6,6 @@ import os
 import argparse
 import re
 import gzip
-from Bio import SeqIO
-
 
 def get_filenames(directory):
     """return the filenames of the fast(q/a)s or complain directory doesnt exist"""
